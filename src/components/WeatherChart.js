@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 
-const API_KEY = 'YOUR_API_KEY'; // 请替换成你自己的天气API密钥
+
+
+const API_KEY = 'YOUR_API_KEY'; 
 
 const WeatherChart = ({ location, selectedDate }) => {
   const [chartData, setChartData] = useState(null);
@@ -35,6 +37,8 @@ const WeatherChart = ({ location, selectedDate }) => {
         });
 
         setChartData(chartData);
+
+       
       } catch (error) {
         console.error('天气图表数据获取失败', error);
       }
