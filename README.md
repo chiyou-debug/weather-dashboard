@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+Our project is a weather monitoring table that also provides energy-saving suggestions based on the current temperature.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We have two members in our team. RuiJie Fan, Haocheng Lu
 
-## Available Scripts
+Our division of work:
 
-In the project directory, you can run:
+Ruijie Fan: Implemented the functionality to retrieve weather information JSON from the 'onWeather' API.
+            Designed the layout for the weather forecast display board.
+            Basic architecture of the entire program.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Haocheng Lu: Implemented the login and registration functionality for the program.
+             Implemented the loading of Google Maps.
+             Implemented data retrieval from Firebase, marking city names and coordinates on Google Maps based on the data in Firebase.
+             Implemented conditional rendering of different pop-ups based on temperature differences.
+             Implemented routing functionality.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+According to the scoring sheet, we've implemented the following functionalities:
+1.Api: We utilized the Google API to acquire maps and employed the onWeatherAPI to obtain weather information.
+2.database: We employed Firebase Authentication for user login and registration, utilized Firestore database to store geographical information of cities, and utilized Firebase Storage to store the background image for the login interface.
+3.External Json:  We used the JSON obtained from the OnWeatherAPI.
+4.Conditional rendering: Implemented conditional rendering based on temperature information to display different pages.
+5.Sorting,Filtering,Searching: Implemented a search function that filters specific city weather information based on the user-input city name.
+6.UI: Login, register, buttons, input fields.
+7.Parent-Child: Passing the user-input city name as a prop to the child component, and within the child component, filtering the corresponding city's weather information based on that prop.
+8.Multiple Component: Obviously,we have several components.
+9.Using React Router: We used router to navigate to different pages.
+10.mixture Functional and Class...: Yes.

@@ -1,3 +1,9 @@
+/**
+ * Route: root (/)
+ * check user's input, if the email and password is true, route the mainpage. 
+ */
+
+
 import { useState, useEffect } from 'react';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +14,7 @@ import './LoginPage.css';
 const BackgroundImage = () => {
   const [imageUrl, setImageUrl] = useState('');
 
+  //use useEffect hook to create a reference. we can get url from firebase storage.
   useEffect(() => {
     const storageRef = ref(getStorage(), 'image/login_background.jpg');
 
@@ -30,7 +37,7 @@ const BackgroundImage = () => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            filter: 'blur(50px)', // 图片模糊化
+            filter: 'blur(50px)', 
           }}
         />
       )}
@@ -41,6 +48,7 @@ const BackgroundImage = () => {
 const LoginPage = () => {
     const navigate = useNavigate();
   
+    //Listen for user click events, and if the user clicks on 'register,' navigate to the register page
     const handleRegisterClick = () => {
       navigate('/register');
     };
@@ -48,6 +56,7 @@ const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
+    //Asynchronous operation that checks in Firebase whether there's a match with the user-inputted email and password
     const handleLogin = async () => {
       try {
         const auth = getAuth();
@@ -56,6 +65,9 @@ const LoginPage = () => {
         const user = userCredential.user;
   
         console.log('User logged in:', user);
+
+       
+        //Upon successful login, navigate to our main page.
         navigate('/mainpage');
       } catch (error) {
         console.error('Error logging in:', error.message);
@@ -79,12 +91,10 @@ const LoginPage = () => {
         >
           <div className="login-box" style={{ border: '2px solid white', padding: '20px' }}>
             <h2>Login</h2>
-            {/* 关联输入框的值和状态 */}
+
             <input type="text" placeholder="Email:" className="input-field" value={email} onChange={(e) => setEmail(e.target.value)} />
             <input type="password" placeholder="Password:" className="input-field" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button className="btn" onClick={handleLogin}>
-              Login
-            </button>
+            <button className="btn" onClick={handleLogin}>Login</button>
             <button className="btn" onClick={handleRegisterClick}>
               Register
             </button>

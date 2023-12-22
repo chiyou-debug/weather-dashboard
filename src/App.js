@@ -29,10 +29,10 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/mainpage" element={<GoogleMap />}/>
-          <Route path="/map" element={<WeatherDashboard />}/>
+          <Route path="/" element={<LoginPage />} />  {/**Login page, first show */}
+          <Route path="/register" element={<RegisterForm />} /> {/**register page*/}
+          <Route path="/mainpage" element={<GoogleMap />}/>{/**mainpage, show everything */}
+          <Route path="/map" element={<WeatherDashboard />}/> {/**useless now. */}
           
           </Routes>
       </Router>

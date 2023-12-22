@@ -1,3 +1,13 @@
+/**
+ * Route: /mainpage
+ * This is our main page. On this page, we can see a map and a dashboard.
+ * 1. We use google map API to get a map, retrieve the city names and coordinates
+ * I've stored in the Firestore database and mark them on the map.
+ * 2.I've made some layout designs to showcase both the map and the dashboard.
+ * Consequently, I've removed the original dashboard route
+ */
+
+
 import React, { useEffect, useState } from 'react';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 import WeatherDashboard from './WeatherDashboard';
@@ -21,7 +31,7 @@ const GoogleMap = () => {
     //The focal point is Dublin.
     const mapInstance = new window.google.maps.Map(document.getElementById("map"), {
       center: dublin,
-      zoom: 10,
+      zoom: 12,
     });
 
     setMap(mapInstance);

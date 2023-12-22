@@ -1,6 +1,17 @@
+/**
+ * This component have two functions.
+ * 1.We get props from its Parent component(WeatherDashBoard), which contains weather info from onWeather API.
+ *   Then we show these infos in a board.
+ * 2.get the current temperature, render different popups based on temperature ranges.
+ */
+
+
 import React, { useState } from 'react';
 
-const getTemperatureInfo = (temperature) => {
+
+//This function displays a popup based on the value of the parameter "temperature," 
+//determining which specific popup to show
+const showAdvice = (temperature) => {
   if (temperature < 0) {
     return (
       <ul>
@@ -49,18 +60,27 @@ const getTemperatureInfo = (temperature) => {
   }
 };
 
+//weather info show,get these three para from its parent component.(WeatherDashboard)
 const WeatherCard = ({ weatherData, selectedDate, currentTime }) => {
+
+  //get two element from weatherData
   const { main, weather } = weatherData;
+
+  //Convert Fahrenheit to Celsius, round to two decimal places
   const temperature = (main.temp - 273.15).toFixed(2);
 
-  const [showTemperatureInfo, setShowTemperatureInfo] = useState(false);
+  //Check if the popup is open. If it's true, open the popup
+  //if it's false, close the popup. Toggle this boolean when the user clicks on "Temperature
+  const [isShow, setIsShow] = useState(false);
 
+  
+//An event listener for the click event, toggling a boolean.
   const handleTemperatureClick = () => {
-    setShowTemperatureInfo(true);
+    setIsShow(true);
   };
 
   const closeTemperatureInfo = () => {
-    setShowTemperatureInfo(false);
+    setIsShow(false);
   };
 
   return (
@@ -78,11 +98,14 @@ const WeatherCard = ({ weatherData, selectedDate, currentTime }) => {
   <p>Current Time: {currentTime.toLocaleTimeString()}</p>
 
 
-      {/* 温度信息弹窗 */}
-      {showTemperatureInfo && (
+      {/* FIRST,we need to judge the value of isShow. if it is true,  */}
+      {isShow && (
         <div className="temperature-info-popup">
           <h2>Recommend</h2>
-          <p>{getTemperatureInfo(temperature)}</p>
+          {/*Call the getInfo function to trigger the popup output */}
+          <p>{showAdvice(temperature)}</p>
+
+
           <button onClick={closeTemperatureInfo}>close</button>
         </div>
       )}

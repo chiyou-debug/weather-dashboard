@@ -45,10 +45,11 @@ const WeatherDashboard = ({ location }) => {
     setSelectedDate(date);
   };
 
-
+//Passing three parameters to the child component here
   return (
     <div className="weather-dashboard">
       <div className="top-left-container">
+        
         <div className="weather-card">
           {weatherData && (
             <WeatherCard

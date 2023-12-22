@@ -1,3 +1,15 @@
+/**
+ * This component have 1 function
+ * use useState hook to create two state variables
+ * email: user's input email
+ * password: user's input password
+ * createUserWithEmailAndPassword:The function from Firebase Authentication 
+ * that creates an account using the user's inputted email and password.
+ * Route:/register
+ */
+
+
+
 import { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -15,12 +27,14 @@ const RegisterForm = () => {
             const auth = getAuth();
 
             // Create an account in Firebase using the user's input for email and password
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
+            const userInfo = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userInfo.user;
 
-            console.log('User registered:', user);
+    
 
             window.alert('Registration successful!');
+
+            //If Firebase confirms successful registration, navigate to the root page, which is the login interface
             navigate('/');
         } catch (error) {
             console.error('Error registering user:', error.message);
