@@ -1,8 +1,27 @@
 /**
- * This component have two functions.
- * 1.We get props from its Parent component(WeatherDashBoard), which contains weather info from onWeather API.
- *   Then we show these infos in a board.
- * 2.get the current temperature, render different popups based on temperature ranges.
+ * WeatherCard - A React component for displaying weather information and providing advice based on temperature.
+ * 
+ * Props:
+ * - weatherData: An object containing weather information obtained from the WeatherDashBoard parent component.
+ * - selectedDate: A Date object representing the date for which the weather information is shown.
+ * - currentTime: A Date object representing the current time.
+ * 
+ * State:
+ * - isShow: A boolean state that determines whether to show the temperature advice popup.
+ * 
+ * Functions:
+ * - showAdvice(temperature): A function that returns different sets of advice as React elements (ul > li) based on temperature ranges.
+ *   - Displays advice for various activities and precautions relevant to the given temperature range.
+ * 
+ * Rendering:
+ * - Displays weather details such as description, temperature, humidity, pressure, visibility, wind speed, and direction.
+ * - Shows sunrise and sunset times, and the current time.
+ * - Temperature value is clickable and triggers a popup showing advice relevant to the current temperature.
+ * - The popup can be closed with a close button.
+ * 
+ * Additional Notes:
+ * - The temperature from weatherData is converted from Kelvin to Celsius for display.
+ * - The component uses useState for handling the display state of the temperature advice popup.
  */
 
 
@@ -61,7 +80,7 @@ const showAdvice = (temperature) => {
 };
 
 //weather info show,get these three para from its parent component.(WeatherDashboard)
-const WeatherCard = ({ weatherData, selectedDate, currentTime }) => {
+const WeatherCard = ({ weatherData, currentTime }) => {
 
   //get two element from weatherData
   const { main, weather } = weatherData;
@@ -84,8 +103,7 @@ const WeatherCard = ({ weatherData, selectedDate, currentTime }) => {
   };
 
   return (
-    <div className="weather-card">
-  <h2>{selectedDate.toDateString()}</h2>
+  <div className="weather-card">
   <h3>Weather: {weather[0].description}</h3>
   <p onClick={handleTemperatureClick}>Temperature: {temperature}°C</p>
   <p>Humidity: {main.humidity}%</p>

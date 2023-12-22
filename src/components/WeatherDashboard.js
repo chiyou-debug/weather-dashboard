@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import WeatherCard from './WeatherCard';
-import WeatherChart from './WeatherChart';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import './WeatherDashboard.css'; 
-import { Link } from 'react-router-dom';
+import axios from 'axios'; // Import axios library for making HTTP requests
+import WeatherCard from './WeatherCard'; // Import the WeatherCard component
+import 'react-datepicker/dist/react-datepicker.css'; // Import date picker styles
+import './WeatherDashboard.css'; // Import the WeatherDashboard styles
 
-const API_KEY = 'cd2664cf621ec9dc02b8612f38822811'; // 天气API密钥
+const API_KEY = 'cd2664cf621ec9dc02b8612f38822811'; // Weather API key
 
+const WeatherDashboard = ({ location }) => { // Receive a prop called 'location'
 
-const WeatherDashboard = ({ location }) => {
-
-  const [weatherData, setWeatherData] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [weatherData, setWeatherData] = useState(null); // State to store weather data
+  const [currentTime, setCurrentTime] = useState(new Date()); // State to store current time
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -22,30 +17,26 @@ const WeatherDashboard = ({ location }) => {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}`
         );
-        setWeatherData(response.data);
+        setWeatherData(response.data); // Fetch weather data through API request and store it in the weatherData state
       } catch (error) {
-        console.error('error! we can\'t get any information', error);
+        console.error('error! we can\'t get any information', error); // Log an error message if the request fails
       }
     };
 
-    fetchWeatherData();
+    fetchWeatherData(); // Call the fetchWeatherData function
   }, [location]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(new Date());
+      setCurrentTime(new Date()); // Update the current time every second
     }, 1000);
 
     return () => {
-      clearInterval(timer);
+      clearInterval(timer); // Clean up the timer when the component unmounts
     };
   }, []);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-//Passing three parameters to the child component here
+  // Passing three parameters to the child component here
   return (
     <div className="weather-dashboard">
       <div className="top-left-container">
@@ -54,19 +45,12 @@ const WeatherDashboard = ({ location }) => {
           {weatherData && (
             <WeatherCard
               weatherData={weatherData}
-              selectedDate={selectedDate}
               currentTime={currentTime}
             />
           )}
         </div>
    
       </div>
-      {weatherData && (
-        <WeatherChart
-          location={location}
-          selectedDate={selectedDate}
-        />
-      )}
     </div>
   );
 };
